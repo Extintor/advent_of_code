@@ -7,7 +7,8 @@ import (
 )
 
 func part_two() int {
-	expenses := []int{}
+	expenses := make(map[int]int)
+	processed_expenses := []int{}
 
 	file, _ := os.Open("input.txt")
 	defer file.Close()
@@ -15,14 +16,14 @@ func part_two() int {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		new_expense, _ := strconv.Atoi(scanner.Text())
-		for _, first_expense := range expenses {
-			for _, second_expense := range expenses {
-				if new_expense+first_expense+second_expense == 2020 {
-					return new_expense * first_expense * second_expense
-				}
-			}
+		for _, expense := range processed_expenses {
+			expenses[new_expense+expense] = new_expense * expense
 		}
-		expenses = append(expenses, new_expense)
+
+		if expenses[2020-new_expense] != 0 {
+			return new_expense * expenses[2020-new_expense]
+		}
+		processed_expenses = append(processed_expenses, new_expense)
 	}
 	return 0
 }
