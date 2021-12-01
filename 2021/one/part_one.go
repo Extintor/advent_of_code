@@ -7,15 +7,9 @@ import (
 	"strconv"
 )
 
-func part_one() int {
-	var increases, lastDepth, currentDepth = -1, -1, -1
-
-	file, _ := os.Open("input.txt")
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		currentDepth, _ = strconv.Atoi(scanner.Text())
+func solve(input []int) int {
+	var increases, lastDepth = -1, -1
+	for _, currentDepth := range input {
 		if currentDepth > lastDepth {
 			increases += 1
 		}
@@ -25,7 +19,20 @@ func part_one() int {
 }
 
 func main() {
-	fmt.Println("Result part one:", part_one())
+
+	var input []int
+
+	file, _ := os.Open("input.txt")
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		inputInt, err := strconv.Atoi(scanner.Text())
+		if err != nil{
+			return
+		}
+		input = append(input, inputInt)
+	}
+
+	fmt.Println("Result:", solve(input))
 }
-
-

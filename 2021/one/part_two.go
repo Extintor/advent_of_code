@@ -7,23 +7,20 @@ import (
 	"strconv"
 )
 
-func part_two() int {
-	var increases, sum, lastSum = -1, 0, -1
-	var depthOne, depthTwo, depthThree int = -1, -1, -1
+func addWindow(window []int) int {
+	result := 0
+	for _, num := range window {
+		result += num
+	}
+	return result
+}
 
-	file, _ := os.Open("input.txt")
-	defer file.Close()
+func solve(input []int) int {
+	var increases, sum, lastSum = -1, -1, -1
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		depthOne = depthTwo
-		depthTwo = depthThree
-		depthThree, _ = strconv.Atoi(scanner.Text())
-		if (depthOne < 0){
-			continue
-		}
-		sum = depthOne + depthTwo + depthThree
-		fmt.Printf("%d %d %d\n", depthOne, depthTwo, depthThree)
+	for i := 0; i <= len(input) - 3; i++ {
+		window := input[i:i+3]
+		sum = addWindow(window)
 		if sum > lastSum{
 			increases += 1
 		}
@@ -33,7 +30,21 @@ func part_two() int {
 }
 
 func main() {
-	fmt.Println("Result part two:", part_two())
-}
 
+	var input []int
+
+	file, _ := os.Open("input.txt")
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		inputInt, err := strconv.Atoi(scanner.Text())
+		if err != nil{
+			return
+		}
+		input = append(input, inputInt)
+	}
+
+	fmt.Println("Result:", solve(input))
+}
 
