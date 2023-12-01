@@ -1,4 +1,4 @@
-package main
+package one
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func solve(input []int) int {
+func solveOne(input []int) int {
 	var increases, lastDepth = -1, -1
 	for _, currentDepth := range input {
 		if currentDepth > lastDepth {
@@ -18,7 +18,7 @@ func solve(input []int) int {
 	return increases
 }
 
-func main() {
+func mainOne() {
 
 	var input []int
 
@@ -28,11 +28,11 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		inputInt, err := strconv.Atoi(scanner.Text())
-		if err != nil{
+		if err != nil {
 			return
 		}
 		input = append(input, inputInt)
 	}
 
-	fmt.Println("Result:", solve(input))
+	fmt.Println("Result:", solveOne(input))
 }

@@ -1,4 +1,4 @@
-package main
+package one
 
 import (
 	"bufio"
@@ -18,10 +18,10 @@ func addWindow(window []int) int {
 func solve(input []int) int {
 	var increases, sum, lastSum = -1, -1, -1
 
-	for i := 0; i <= len(input) - 3; i++ {
-		window := input[i:i+3]
+	for i := 0; i <= len(input)-3; i++ {
+		window := input[i : i+3]
 		sum = addWindow(window)
-		if sum > lastSum{
+		if sum > lastSum {
 			increases += 1
 		}
 		lastSum = sum
@@ -39,7 +39,7 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		inputInt, err := strconv.Atoi(scanner.Text())
-		if err != nil{
+		if err != nil {
 			return
 		}
 		input = append(input, inputInt)
@@ -47,4 +47,3 @@ func main() {
 
 	fmt.Println("Result:", solve(input))
 }
-

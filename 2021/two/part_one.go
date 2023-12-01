@@ -8,13 +8,13 @@ import (
 	"strings"
 )
 
-func solve(input []string) (int, error) {
+func solveOne(input []string) (int, error) {
 	horizontal, vertical := 0, 0
 	for _, inputLine := range input {
 		splitted := strings.Split(inputLine, " ")
 		k := splitted[0]
 		v, err := strconv.Atoi(splitted[1])
-		if err != nil{
+		if err != nil {
 			return -1, err
 		}
 
@@ -30,12 +30,12 @@ func solve(input []string) (int, error) {
 	return horizontal * vertical, nil
 }
 
-func main() {
+func mainOne() {
 
 	input := make([]string, 0, 0)
 
 	file, err := os.Open("input.txt")
-	if err != nil{
+	if err != nil {
 		return
 	}
 	defer file.Close()
@@ -46,7 +46,7 @@ func main() {
 		input = append(input, inputLine)
 	}
 	result, err := solve(input)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	fmt.Println("Result:", result)

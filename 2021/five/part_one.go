@@ -1,11 +1,16 @@
-package main
+package five
 
 import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
+	"regexp"
 )
+
+type point struct {
+	x int
+	y int
+}
 
 func solveOne(input []uint64) (uint64, error) {
 	result := uint64(0)
@@ -22,7 +27,7 @@ func solveOne(input []uint64) (uint64, error) {
 }
 
 func mainOne() {
-	input := make([]uint64, 0, 0)
+	// input := make([]uint64, 0, 0)
 
 	file, err := os.Open("input.txt")
 	if err != nil {
@@ -30,17 +35,21 @@ func mainOne() {
 	}
 	defer file.Close()
 
+	r, _ := regexp.Compile("(/d),(/d) -> (/d),(/d)")
+
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		inputLine, err := strconv.ParseUint(scanner.Text(), 2, 12)
+		points := r.FindAllString(scanner.Text(), -1)
 		if err != nil {
 			return
 		}
-		input = append(input, inputLine)
+		fmt.Println(points)
 	}
-	result, err := solveOne(input)
-	if err != nil {
-		return
-	}
-	fmt.Println("Result:", result)
+	/*
+		 	result, err := solve(input)
+			if err != nil {
+				return
+			}
+			fmt.Println("Result:", result)
+	*/
 }
