@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-  "github.com/Extintor/advent_of_code/shared/utils"
+  "github.com/extintor/advent_of_code/shared/utils"
 )
 
 type game struct {
