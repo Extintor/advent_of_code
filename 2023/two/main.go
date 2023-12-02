@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-  "github.com/extintor/advent_of_code/shared/utils"
+	"github.com/extintor/advent_of_code/shared/utils"
 )
 
 type game struct {
@@ -78,7 +78,7 @@ func parseDraw(input string) (draw, error) {
 
 func main() {
 	input := make([]game, 0)
-  for _, t := range utils.ReadInput() {
+	for _, t := range utils.ReadInput() {
 		draws := make([]draw, 0)
 		i := strings.Split(t, ": ")
 		id, err := strconv.Atoi(strings.Split(i[0], " ")[1])

@@ -6,7 +6,7 @@ import (
 )
 
 func ReadInput() []string {
-  input := make([]string, 0)
+	input := make([]string, 0)
 	file, err := os.Open("input.txt")
 	if err != nil {
 		panic(err)
@@ -15,8 +15,8 @@ func ReadInput() []string {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-    input = append(input, scanner.Text())
-  }
+		input = append(input, scanner.Text())
+	}
 
-  return input
+	return input
 }
