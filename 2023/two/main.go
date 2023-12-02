@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
+
+  "github.com/Extintor/advent_of_code/shared/utils"
 )
 
 type game struct {
@@ -78,16 +78,8 @@ func parseDraw(input string) (draw, error) {
 
 func main() {
 	input := make([]game, 0)
-	file, err := os.Open("input.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
+  for _, t := range utils.ReadInput() {
 		draws := make([]draw, 0)
-		t := scanner.Text()
 		i := strings.Split(t, ": ")
 		id, err := strconv.Atoi(strings.Split(i[0], " ")[1])
 		if err != nil {
