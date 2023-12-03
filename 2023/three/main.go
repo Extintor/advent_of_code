@@ -21,9 +21,9 @@ func isGear(r rune) bool {
 	return r == '*'
 }
 
-func symbolIndex(schematic []string, startX, endX, y int, check func(rune) bool) map[string]struct{} {
+func symbolIndex(schematic []string, start, end, y int, check func(rune) bool) map[string]struct{} {
 	symbols := make(map[string]struct{}, 0)
-	for x := startX; x < endX; x++ {
+	for x := start; x < end; x++ {
 		for dy := -1; dy <= 1; dy++ {
 			for dx := -1; dx <= 1; dx++ {
 				nx, ny := x+dx, y+dy
