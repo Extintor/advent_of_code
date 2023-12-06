@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 
@@ -11,17 +12,13 @@ import (
 func solve(races [][2]int) int {
   total := 1
 	for _, race := range races {
-	  sum := 0
-		time := race[0]
-		distance := race[1]
-		for speed := 0; speed <= time; speed ++ {
-			remaining := time - speed
-			traveled := remaining * speed
-			if traveled > distance {
-				sum += 1
-			}
-		}
-    total *= sum
+		t := race[0]
+		d := race[1]
+    r := math.Sqrt(float64((t * t) - (4 * d)))
+    a := int((float64(t) + r) / 2)
+    b := int((float64(t) - r ) / 2)
+    result := a  - b
+    total *= result
 	}
   return total
 }
@@ -56,6 +53,7 @@ func solveOne(timeSlice, distanceSlice []string) (int, error) {
     }
     races = append(races, r)
   }
+  solve(races)
   return solve(races), nil
 }
 
