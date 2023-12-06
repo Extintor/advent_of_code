@@ -17,8 +17,7 @@ func solve(races [][2]int) int {
     r := math.Sqrt(float64((t * t) - (4 * d)))
     a := int((float64(t) + r) / 2)
     b := int((float64(t) - r ) / 2)
-    result := a  - b
-    total *= result
+    total *= a - b
 	}
   return total
 }
